@@ -10,6 +10,7 @@ class TalkerNode(Node):
         super().__init__("Talker")
         self.pub = self.create_publisher(Int16, "countup", 10)
         self.timer = self.create_timer(0.5, self.cb)
+        print("talker初期化メソッド")
     
     def cb(self):
         global n
@@ -17,6 +18,7 @@ class TalkerNode(Node):
         msg.data = n
         self.pub.publish(msg)
         n += 1
+        self.get_logger().info("Talk: %d" % n)
 
 
 def main():
